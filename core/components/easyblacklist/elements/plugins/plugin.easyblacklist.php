@@ -7,6 +7,7 @@ if (!($easyBlacklist instanceof easyBlacklist)) return false;
 $query = $modx->newQuery('eblBlacklist');
 $query->where(array(
 	'ip' => $_SERVER['REMOTE_ADDR']
+	,'active' => 1
 ));
 $query->limit(1);
 $boxes = $modx->getCollection('eblBlacklist', $query);

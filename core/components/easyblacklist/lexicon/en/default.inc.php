@@ -1,7 +1,5 @@
 <?php
 
-include_once 'setting.inc.php';
-
 $_lang['msproductremains'] = 'easyBlacklist';
 $_lang['msproductremains_menu_desc'] = 'A sample Extra to develop from.';
 $_lang['msproductremains_items'] = 'Items';

@@ -1,0 +1,22 @@
+<?php
+
+$properties = array();
+
+$tmp = array(
+	/*'name' => array(
+		'type' => 'textfield',
+		'value' => 'size',
+	)*/
+);
+
+foreach ($tmp as $k => $v) {
+	$properties[] = array_merge(
+		array(
+			'name' => $k,
+			'desc' => PKG_NAME_LOWER . '_prop_' . $k,
+			'lexicon' => PKG_NAME_LOWER . ':properties',
+		), $v
+	);
+}
+
+return $properties;

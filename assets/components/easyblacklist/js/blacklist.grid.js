@@ -150,8 +150,8 @@ easyBlacklist.window.CreateItem = function(config) {
 	Ext.applyIf(config,{
 		title: _('ebl_blacklist_item_create')
 		,id: this.ident
-		,height: 200
-		,width: 475
+		,pageSize: Math.round(MODx.config.default_per_page / 2)
+		,autoHeight: true
 		,url: easyBlacklist.config.connector_url
 		,action: 'blacklist/create'
 		,fields: [
@@ -172,8 +172,8 @@ easyBlacklist.window.UpdateItem = function(config) {
 	Ext.applyIf(config,{
 		title: _('ebl_blacklist_item_update')
 		,id: this.ident
-		,height: 200
-		,width: 475
+		,pageSize: Math.round(MODx.config.default_per_page / 2)
+		,autoHeight: true
 		,url: easyBlacklist.config.connector_url
 		,action: 'blacklist/update'
 		,fields: [

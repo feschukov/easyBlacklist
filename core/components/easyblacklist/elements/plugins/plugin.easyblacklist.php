@@ -10,7 +10,13 @@ $query->where(array(
 	,'active' => 1
 ));
 $query->limit(1);
-$boxes = $modx->getCollection('eblBlacklist', $query);
-if ( count($boxes) > 0 ) {
-	die('Error 404!');
+$boxes = $modx->getCount('eblBlacklist', $query);
+if ( $boxes > 0 ) {
+	$box = $modx->getObject('eblBlacklist', $query);
+	$bid = (int) $modx->getOption('ebl_blockpage', $config, 0);
+    if (!is_object($modx->resource)) {
+        $modx->resource = $modx->request->getResource($modx->resourceMethod, $bid);
+    }
+    $modx->resource->cacheable = false;
+	$modx->setPlaceholder('reason', $box->reason);
 }

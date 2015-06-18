@@ -1,3 +1,8 @@
+easyBlacklist 1.0.1-beta
+==============
+- Add document id for blocked users.
+- Add placeholder [[+reason]] for blocked pages.
+
 easyBlacklist 1.0.0-beta
 ==============
 - Initial component.

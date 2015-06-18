@@ -1,5 +1,7 @@
 <?php
 
+include "settings.inc.php";
+
 $_lang['easyblacklist'] = 'easyBlacklist';
 $_lang['ebl_bulk_actions'] = 'Действия';
 $_lang['ebl_blacklist'] = 'Чёрный список';

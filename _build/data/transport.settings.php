@@ -3,11 +3,11 @@
 $settings = array();
 
 $tmp = array(
-	/*'active' => array(
-		'xtype' => 'combo-boolean',
-		'value' => true,
-		'area' => 'ebl_main',
-	),*/
+	'blockpage' => array(
+		'xtype' => 'textfield',
+		'value' => '1',
+		'area'  => 'ebl_main',
+	),
 );
 
 foreach ($tmp as $k => $v) {
@@ -15,7 +15,7 @@ foreach ($tmp as $k => $v) {
 	$setting = $modx->newObject('modSystemSetting');
 	$setting->fromArray(array_merge(
 		array(
-			'key' => PKG_NAME_LOWER . '_' . $k,
+			'key' => 'ebl_' . $k,
 			'namespace' => PKG_NAME_LOWER,
 		), $v
 	), '', true, true);

@@ -4,9 +4,16 @@ if ($modx->event->name != 'OnWebPageInit') return false;
 $easyBlacklist = $modx->getService('easyblacklist','easyBlacklist',$modx->getOption('ebl_core_path',null,$modx->getOption('core_path').'components/easyblacklist/').'model/easyblacklist/',$scriptProperties);
 if (!($easyBlacklist instanceof easyBlacklist)) return false;
 
+if (empty($_SERVER['HTTP_CLIENT_IP'])==FALSE) //"расшаренный"
+  $ip=$_SERVER['HTTP_CLIENT_IP'];
+elseif (empty($_SERVER['HTTP_X_FORWARDED_FOR'])==FALSE) //если прокси
+  $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+else
+  $ip=$_SERVER['REMOTE_ADDR'];
+  
 $query = $modx->newQuery('eblBlacklist');
 $query->where(array(
-	'ip' => $_SERVER['REMOTE_ADDR']
+	'ip' => $ip
 	,'active' => 1
 ));
 $query->limit(1);

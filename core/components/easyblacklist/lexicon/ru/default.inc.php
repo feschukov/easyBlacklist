@@ -1,26 +1,32 @@
 <?php
 
-include "settings.inc.php";
-
 $_lang['easyblacklist'] = 'easyBlacklist';
 $_lang['ebl_bulk_actions'] = 'Действия';
-$_lang['ebl_blacklist'] = 'Чёрный список';
+$_lang['ebl_blacklist'] = 'Чёрный список IP';
 $_lang['ebl_blacklist_desc'] = 'Заблокированные IP-адреса';
-$_lang['ebl_blacklist_intro'] = 'Лёгкий чёрный список IP-адресов';
+$_lang['ebl_blacklist_intro'] = 'Чёрный список IP-адресов';
 $_lang['ebl_blacklist_create'] = 'Создать';
+$_lang['ebl_blacklist_add'] = 'Добавить';
 $_lang['ebl_blacklist_update'] = 'Изменить';
-$_lang['ebl_blacklist_active'] = 'Включить';
-$_lang['ebl_blacklist_active_selected'] = 'Включить выделенные';
-$_lang['ebl_blacklist_deactive'] = 'Отключить';
-$_lang['ebl_blacklist_deactive_selected'] = 'Отключить выделенные';
+$_lang['ebl_blacklist_item_enable'] = 'Включить';
+$_lang['ebl_blacklist_items_enable'] = 'Включить выделенные правила';
+$_lang['ebl_blacklist_item_disable'] = 'Отключить';
+$_lang['ebl_blacklist_items_disable'] = 'Отключить выделенные правила';
 $_lang['ebl_blacklist_remove'] = 'Удалить';
-$_lang['ebl_blacklist_remove_selected'] = 'Удалить выделенные';
+$_lang['ebl_blacklist_remove_selected'] = 'Удалить выделенные правила';
 $_lang['ebl_blacklist_grid_id'] = 'ID';
 $_lang['ebl_blacklist_grid_ip'] = 'IP-адрес';
 $_lang['ebl_blacklist_grid_reason'] = 'Причина';
-$_lang['ebl_blacklist_grid_active'] = 'Включён';
+$_lang['ebl_blacklist_grid_active'] = 'Блокировать';
+$_lang['ebl_blacklist_grid_username'] = 'Пользователь';
+$_lang['ebl_blacklist_grid_attempts'] = 'Попытки';
+$_lang['ebl_blacklist_grid_notes'] = 'Примечание';
+$_lang['ebl_blacklist_grid_createdon'] = 'Создана';
 $_lang['ebl_blacklist_item_create'] = 'Создание правила';
-$_lang['ebl_blacklist_item_create'] = 'Изменение правила';
+$_lang['ebl_blacklist_item_update'] = 'Изменение правила';
 $_lang['ebl_blacklist_item_remove'] = 'Удаление правила';
 $_lang['ebl_blacklist_item_remove_confirm'] = 'Вы действительно хотите удалить правило?';
-$_lang['ebl_items_err_ns'] = 'Не выбраны правила для удаления';
+$_lang['ebl_blacklist_items_remove_confirm'] = 'Вы действительно хотите удалить выделенные правила?';
+$_lang['ebl_items_err_ns'] = 'Не выбраны правила для удаления!';
+$_lang['ebl_items_err_nf'] = 'Указанное правило не найдено!';
+$_lang['ebl_items_err_ae'] = 'Указанный ip уже добавлен!';

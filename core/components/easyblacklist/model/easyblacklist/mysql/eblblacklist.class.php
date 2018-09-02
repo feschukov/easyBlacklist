@@ -1,3 +1,3 @@
 <?php
-require_once (dirname(dirname(__FILE__)) . '/eblblacklist.class.php');
+require_once (dirname(__DIR__) . '/eblblacklist.class.php');
 class eblBlacklist_mysql extends eblBlacklist {}

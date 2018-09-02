@@ -1,3 +1,9 @@
+easyBlacklist 1.2.0-pl
+==============
+- Add the "log_request" system setting.
+- Add English lexicon.
+- Some code refactoring.
+
 easyBlacklist 1.0.1-beta
 ==============
 - Add document id for blocked users.

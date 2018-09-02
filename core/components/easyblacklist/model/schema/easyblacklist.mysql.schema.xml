@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model package="easyblacklist" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" version="1.1">
 	<object class="eblBlacklist" table="ebl_blacklist" extends="xPDOSimpleObject">
-		<field key="id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" index="pk" generated="native" />
-        <field key="reason" dbtype="tinytext" phptype="string" null="true" />
-        <field key="ip" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
-        <field key="hostname" dbtype="tinytext" phptype="string" null="true" />
-        <field key="email" dbtype="tinytext" phptype="string" null="true" />
-        <field key="username" dbtype="tinytext" phptype="string" null="true" />
-        <field key="notes" dbtype="text" phptype="string" null="true" />
-        <field key="active" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="0" index="index" />
-        <index alias="active" name="active" primary="false" unique="false" type="BTREE">
-            <column key="active" length="" collation="A" null="false" />
-        </index>
+		<field key="reason" dbtype="tinytext" phptype="string" null="true" />
+		<field key="ip" dbtype="varchar" precision="100" phptype="string" null="false" default="" index="index" />
+		<field key="hostname" dbtype="tinytext" phptype="string" null="true" />
+		<field key="uid" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0"/>
+		<field key="notes" dbtype="text" phptype="string" null="true" />
+		<field key="active" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="0" index="index" />
+		<field key="createdon" dbtype="datetime" phptype="datetime" null="true" />
+		<field key="attempts" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0"/>
+
+		<index alias="ip" name="ip" primary="false" unique="false" type="BTREE">
+			<column key="ip" length="" collation="A" null="false" />
+		</index>
+		<index alias="active" name="active" primary="false" unique="false" type="BTREE">
+			<column key="active" length="" collation="A" null="false" />
+		</index>
+
+		<aggregate alias="User" class="modUser" local="uid" foreign="id" cardinality="one" owner="foreign" />
 	</object>
 </model>

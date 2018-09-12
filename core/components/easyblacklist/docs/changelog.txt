@@ -1,3 +1,10 @@
+easyBlacklist 1.2.0-pl
+==============
+- Add the "log_request" system setting.
+- Add English lexicon.
+- Add some fields to the mySql table.
+- Some code refactoring.
+
 easyBlacklist 1.0.1-beta
 ==============
 - Add document id for blocked users.

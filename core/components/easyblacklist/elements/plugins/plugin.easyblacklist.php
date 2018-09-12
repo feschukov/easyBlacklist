@@ -1,29 +1,28 @@
 <?php
-if ($modx->event->name != 'OnWebPageInit') return false;
+if ($modx->context->key == 'mgr') return;
 
-$easyBlacklist = $modx->getService('easyblacklist','easyBlacklist',$modx->getOption('ebl_core_path',null,$modx->getOption('core_path').'components/easyblacklist/').'model/easyblacklist/',$scriptProperties);
-if (!($easyBlacklist instanceof easyBlacklist)) return false;
+switch ($modx->event->name) {
+    case 'OnWebPageInit':
+        $blockPage = $modx->getOption('ebl_blockpage');
+        if (is_numeric($blockPage) && $blockPage == $modx->resourceIdentifier) return;
 
-if (empty($_SERVER['HTTP_CLIENT_IP'])==FALSE) //"расшаренный"
-  $ip=$_SERVER['HTTP_CLIENT_IP'];
-elseif (empty($_SERVER['HTTP_X_FORWARDED_FOR'])==FALSE) //если прокси
-  $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
-else
-  $ip=$_SERVER['REMOTE_ADDR'];
-  
-$query = $modx->newQuery('eblBlacklist');
-$query->where(array(
-	'ip' => $ip
-	,'active' => 1
-));
-$query->limit(1);
-$boxes = $modx->getCount('eblBlacklist', $query);
-if ( $boxes > 0 ) {
-	$box = $modx->getObject('eblBlacklist', $query);
-	$bid = (int) $modx->getOption('ebl_blockpage', $config, 0);
-    if (!is_object($modx->resource)) {
-        $modx->resource = $modx->request->getResource($modx->resourceMethod, $bid);
-    }
-    $modx->resource->cacheable = false;
-	$modx->setPlaceholder('reason', $box->reason);
+        $easyBlacklist = $modx->getService('easyblacklist', 'easyBlacklist', $modx->getOption('ebl_core_path', null, $modx->getOption('core_path').'components/easyblacklist/').'model/easyblacklist/', $scriptProperties);
+        if (!($easyBlacklist instanceof easyBlacklist)) return false;
+
+        $ip = $_SERVER['REMOTE_ADDR'];
+        /** @var eblBlacklist $object */
+        if ($object = $modx->getObject('eblBlacklist', array('ip' => $ip, 'active' => 1))) {
+            $easyBlacklist->increment($object);
+            if ($modx->getOption('ebl_log_request', null, false)) {
+                $easyBlacklist->log();
+            };
+            if (is_numeric($blockPage)) {
+                $modx->resource = $modx->getObject('modResource', intval($blockPage));
+                $modx->resource->cacheable = false;
+                $modx->setPlaceholder('reason', $object->reason);
+            } else {
+                $modx->sendRedirect($blockPage);
+            }
+        }
+        break;
 }

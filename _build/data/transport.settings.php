@@ -8,6 +8,11 @@ $tmp = array(
 		'value' => '1',
 		'area'  => 'ebl_main',
 	),
+    'log_request' => array(
+		'xtype' => 'combo-boolean',
+		'value' => false,
+		'area'  => 'ebl_main',
+	),
 );
 
 foreach ($tmp as $k => $v) {

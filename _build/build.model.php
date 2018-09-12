@@ -7,12 +7,12 @@ if (!defined('MODX_BASE_PATH')) {
 /* define sources */
 $root = dirname(dirname(__FILE__)) . '/';
 $sources = array(
-	'root' => $root,
-	'build' => $root . '_build' . ( ( BUILD_PATH_WN ) ? '_' . PKG_NAME : '' ) . '/',
-	'source_core' => $root . 'core/components/' . PKG_NAME_LOWER,
-	'model' => $root . 'core/components/' . PKG_NAME_LOWER . '/model/',
-	'schema' => $root . 'core/components/' . PKG_NAME_LOWER . '/model/schema/',
-	'xml' => $root . 'core/components/' . PKG_NAME_LOWER . '/model/schema/' . PKG_NAME_LOWER . '.mysql.schema.xml',
+    'root' => $root,
+    'build' => $root . '_build/',
+    'source_core' => $root . 'core/components/' . PKG_NAME_LOWER,
+    'model' => $root . 'core/components/' . PKG_NAME_LOWER . '/model/',
+    'schema' => $root . 'core/components/' . PKG_NAME_LOWER . '/model/schema/',
+    'xml' => $root . 'core/components/' . PKG_NAME_LOWER . '/model/schema/' . PKG_NAME_LOWER . '.mysql.schema.xml',
 );
 unset($root);
 

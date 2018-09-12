@@ -4,29 +4,23 @@ $xpdo_meta_map['eblBlacklist']= array (
   'version' => '1.1',
   'table' => 'ebl_blacklist',
   'extends' => 'xPDOSimpleObject',
+  'tableMeta' => 
+  array (
+    'engine' => 'MyISAM',
+  ),
   'fields' => 
   array (
-    'id' => NULL,
     'reason' => NULL,
     'ip' => '',
     'hostname' => NULL,
-    'email' => NULL,
-    'username' => NULL,
+    'uid' => 0,
     'notes' => NULL,
     'active' => 0,
+    'createdon' => NULL,
+    'attempts' => 0,
   ),
   'fieldMeta' => 
   array (
-    'id' => 
-    array (
-      'dbtype' => 'int',
-      'precision' => '10',
-      'attributes' => 'unsigned',
-      'phptype' => 'integer',
-      'null' => false,
-      'index' => 'pk',
-      'generated' => 'native',
-    ),
     'reason' => 
     array (
       'dbtype' => 'tinytext',
@@ -40,6 +34,7 @@ $xpdo_meta_map['eblBlacklist']= array (
       'phptype' => 'string',
       'null' => false,
       'default' => '',
+      'index' => 'index',
     ),
     'hostname' => 
     array (
@@ -47,17 +42,14 @@ $xpdo_meta_map['eblBlacklist']= array (
       'phptype' => 'string',
       'null' => true,
     ),
-    'email' => 
+    'uid' => 
     array (
-      'dbtype' => 'tinytext',
-      'phptype' => 'string',
-      'null' => true,
-    ),
-    'username' => 
-    array (
-      'dbtype' => 'tinytext',
-      'phptype' => 'string',
-      'null' => true,
+      'dbtype' => 'int',
+      'precision' => '10',
+      'attributes' => 'unsigned',
+      'phptype' => 'integer',
+      'null' => false,
+      'default' => 0,
     ),
     'notes' => 
     array (
@@ -75,9 +67,40 @@ $xpdo_meta_map['eblBlacklist']= array (
       'default' => 0,
       'index' => 'index',
     ),
+    'createdon' => 
+    array (
+      'dbtype' => 'datetime',
+      'phptype' => 'datetime',
+      'null' => true,
+    ),
+    'attempts' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '10',
+      'attributes' => 'unsigned',
+      'phptype' => 'integer',
+      'null' => false,
+      'default' => 0,
+    ),
   ),
   'indexes' => 
   array (
+    'ip' => 
+    array (
+      'alias' => 'ip',
+      'primary' => false,
+      'unique' => false,
+      'type' => 'BTREE',
+      'columns' => 
+      array (
+        'ip' => 
+        array (
+          'length' => '',
+          'collation' => 'A',
+          'null' => false,
+        ),
+      ),
+    ),
     'active' => 
     array (
       'alias' => 'active',
@@ -93,6 +116,17 @@ $xpdo_meta_map['eblBlacklist']= array (
           'null' => false,
         ),
       ),
+    ),
+  ),
+  'aggregates' => 
+  array (
+    'User' => 
+    array (
+      'class' => 'modUser',
+      'local' => 'uid',
+      'foreign' => 'id',
+      'cardinality' => 'one',
+      'owner' => 'foreign',
     ),
   ),
 );

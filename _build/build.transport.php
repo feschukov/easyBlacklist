@@ -18,7 +18,7 @@ if (file_exists('build.model.php')) {
 $root = dirname(dirname(__FILE__)) . '/';
 $sources = array(
 	'root' => $root,
-	'build' => $root . '_build' . ( ( BUILD_PATH_WN ) ? '_' . PKG_NAME : '' ) . '/',
+    'build' => $root . '_build/',
 	'data' => $build . 'data/',
 	'resolvers' => $build . 'resolvers/',
 	'chunks' => $root . 'core/components/' . PKG_NAME_LOWER . '/elements/chunks/',
@@ -29,8 +29,6 @@ $sources = array(
 	'pages' => $root . 'core/components/' . PKG_NAME_LOWER . '/elements/pages/',
 	'source_assets' => $root . 'assets/components/' . PKG_NAME_LOWER,
 	'source_core' => $root . 'core/components/' . PKG_NAME_LOWER,
-	'ms2_plugins_assets' => $root . 'assets/components/minishop2/plugins/' . PKG_NAME_LOWER,
-	'ms2_plugins_core' => $root . 'core/components/minishop2/plugins/' . PKG_NAME_LOWER,
 );
 unset($root);
 
@@ -256,18 +254,6 @@ $vehicle->resolve('file', array(
 	'target' => "return MODX_CORE_PATH . 'components/';",
 ));
 
-/* now pack minisop2 plugins in resolvers */
-if ( BUILD_MS2_PLUGIN_PACK ) {
-	$vehicle->resolve('file', array(
-		'source' => $sources['ms2_plugins_assets'],
-		'target' => "return MODX_ASSETS_PATH . 'components/minishop2/plugins/';",
-	));
-	$vehicle->resolve('file', array(
-		'source' => $sources['ms2_plugins_core'],
-		'target' => "return MODX_CORE_PATH . 'components/minishop2/plugins/';",
-	));
-}
-
 foreach ($BUILD_RESOLVERS as $resolver) {
 	if ($vehicle->resolve('php', array('source' => $sources['resolvers'] . 'resolve.' . $resolver . '.php'))) {
 		$modx->log(modX::LOG_LEVEL_INFO, 'Added resolver "' . $resolver . '" to category.');
@@ -285,7 +271,7 @@ $builder->setPackageAttributes(array(
 	'changelog' => file_get_contents($sources['docs'] . 'changelog.txt'),
 	'license' => file_get_contents($sources['docs'] . 'license.txt'),
 	'readme' => file_get_contents($sources['docs'] . 'readme.txt'),
-	'chunks' => $BUILD_CHUNKS,
+	//'chunks' => $BUILD_CHUNKS,
 ));
 $modx->log(modX::LOG_LEVEL_INFO, 'Added package attributes and setup options.');
 

@@ -18,7 +18,7 @@ class eblBlacklistGetListProcessor extends modObjectGetListProcessor {
      * @return xPDOQuery
      */
     public function prepareQueryBeforeCount(xPDOQuery $c) {
-        $c->innerJoin('modUser','User');
+        $c->leftJoin('modUser','User');
         $c->select('eblBlacklist.*, User.username');
 
         return $c;
